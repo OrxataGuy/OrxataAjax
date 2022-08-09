@@ -8,7 +8,7 @@ Javascript class that facilitates the use of Ajax in jQuery. Having jQuery impor
 | url (required) | string | Sets the url the request  |
 | type | enum('GET','POST','PUT','DELETE','OPTIONS','PATCH') | Sets the type of the request |
 | src | string | Sets the data source of the request |
-| token (required) | string | Sets the token of the request |
+| token (required) | string | Sets the token of the request. You can add it on js or set it on a meta tag with a name ended with "token" |
 | data | object | Sets the arguments for the request |
 | showLoading | boolean | True will show SweetAlert2 messages when the request starts, ends, or when an error occurs |
 | startMessage | string, string | User friendly way to set the start message. Required showLoading = true |
@@ -35,18 +35,17 @@ new OrxataAjax()
 
 ### Posting data with Orxata Ajax request:
 ```
-let token = "MY_TOKEN";
+// HTML <meta name="orxata-token" content="MY_TOKEN" />
 new OrxataAjax()
   .type('POST')
   .url('localhost/set/data') 
   .data({foo: 'foo'}) 
-  .token(token)
   .exec(data => console.log(data), error => console.error(error)); 
 ```
 
 ### Loading data with Orxata Ajax request (with SweetAlert2 messages):
 ```
-let token = "MY_TOKEN";
+// HTML <meta name="csrf-token" content="MY_TOKEN" />
 new OrxataAjax()
   .type('GET')
   .url('localhost/get/big_data') 
@@ -68,13 +67,12 @@ new OrxataAjax()
         text: 'Something went wrong...',
         icon: 'error'
     })
-  .token(token)
   .exec(data => console.log(data), error => console.error(error)); 
 ```
 
 ### Loading data with Orxata Ajax request (with SweetAlert2 messages):
 ```
-let token = "MY_TOKEN";
+// HTML <meta name="token" content="MY_TOKEN" />
 new OrxataAjax()
   .type('GET')
   .url('localhost/get/big_data') 
@@ -82,7 +80,6 @@ new OrxataAjax()
   .startMessage('Loading data', 'Please wait')
   .finishMessage('Done!', 'The data is loaded successfully')
   .errorMessage('Woops!', 'Something went wrong...')
-  .token(token)
   .exec(data => console.log(data), error => console.error(error)); 
 ```
 
