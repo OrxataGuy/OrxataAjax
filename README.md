@@ -51,6 +51,34 @@ new OrxataAjax()
   .type('GET')
   .url('localhost/get/big_data') 
   .showLoading(true)
+  .swalLoadingStartMessage({
+    title: 'Loading data',
+    text: 'Please wait',
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    didOpen: () => Swal.showLoading()
+  })
+  .swalLoadingFinishMessage({ 
+        title: 'Done!',
+        text: 'Everything is ready!',
+        icon: 'success'
+    })
+  .swalLoadingErrorMessage({ 
+        title: 'Oops!',
+        text: 'Something went wrong...',
+        icon: 'error'
+    })
+  .token(token)
+  .exec(data => console.log(data), error => console.error(error)); 
+```
+
+### Loading data with Orxata Ajax request (with SweetAlert2 messages):
+```
+let token = "MY_TOKEN";
+new OrxataAjax()
+  .type('GET')
+  .url('localhost/get/big_data') 
+  .showLoading(true)
   .startMessage('Loading data', 'Please wait')
   .finishMessage('Done!', 'The data is loaded successfully')
   .errorMessage('Woops!', 'Something went wrong...')
