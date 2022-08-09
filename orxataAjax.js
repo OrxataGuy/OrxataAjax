@@ -82,6 +82,8 @@ OrxataAjax.prototype.startMessage = function (title, text) {
     return  this.swalLoadingStartMessage({
         title: title,
         text: text,
+	allowOutsideClick: false,
+        showConfirmButton: false,
         didOpen: () => Swal.showLoading()
     });
 }
