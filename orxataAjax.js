@@ -17,7 +17,7 @@ function OrxataAjax () {
   	this._type = 'GET';
   	this._data = {};
     // CSRF-TOKEN or similar is REQUIRED
-	this._token = '';
+	this._token = $('meta[name$="token"]').attr('content');
   	this._dataSrc = '';
     this._loading = false;
     this._swal_b_opts = {
