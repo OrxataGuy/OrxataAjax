@@ -92,9 +92,10 @@ let token = "MY_TOKEN",
       .data({filter: 'foo', _token: token})
       .src('regs')
       .token(token)
-      .get(), // Expected server response {status: 200, regs: [0-N]}
-    dataTable = $('#dataTable').DataTable({
-      ajax: ajax,
-      columns: [{data: 'id'}, {data: 'name'}, {data: 'value'}],
-    });
+      .exec(data => { // Expected server response {status: 200, regs: [0-N]}
+        dataTable = $('#dataTable').DataTable({
+          data: data.regs,
+          columns: [{data: 'id'}, {data: 'name'}, {data: 'value'}],
+        })      
+      }, error => console.error(error));
 ```
